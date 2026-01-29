@@ -1,0 +1,17 @@
+services:
+  db:
+    image: postgres:16
+
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: CHANGE_ME
+      POSTGRES_DB: mydb
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data_kanban:/var/lib/postgresql/data
+
+volumes:
+  postgres_data_kanban:

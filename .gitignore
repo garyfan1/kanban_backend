@@ -242,4 +242,3 @@ cython_debug/
 .idea/
 
 CLAUDE.md
-docker-compose.yml

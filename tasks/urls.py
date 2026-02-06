@@ -9,7 +9,8 @@ router.register("tasks", TaskViewSet)
 urlpatterns = [
     path('ping/', views.health_check, name='ping'),
     path('jwt-ping/', views.health_check_jwt, name='jwt-ping'),
-    path("register/", views.RegisterView.as_view(), name="register")
+    path("register/", views.RegisterView.as_view(), name="register"),
+    path("profile/", views.get_profile, name="profile")
 ]
 
 urlpatterns += router.urls

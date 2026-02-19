@@ -23,6 +23,11 @@ class UserSerializer(serializers.ModelSerializer):
         password = validated_data["password"]
         return User.objects.create_user(username=username, password=password)
 
+    def validate_username(self, value):
+        if User.objects.filter(username=value).exists():
+            raise serializers.ValidationError("That username is already taken.")
+        return value
+
     class Meta:
         model = User
         fields = ["id", "username", "password"]

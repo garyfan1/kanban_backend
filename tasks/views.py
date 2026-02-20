@@ -1,12 +1,8 @@
-import json
-
-from django.shortcuts import render
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework import viewsets, generics
 from django_filters.rest_framework import DjangoFilterBackend
-from django.contrib.auth.models import User
 from .models import Task
 from .serializers import TaskSerializer, UserSerializer
 
@@ -27,7 +23,9 @@ def get_profile(request):
     return Response({"username": username})
 
 class TaskViewSet(viewsets.ModelViewSet):
-    queryset = Task.objects.all() # for router to determine URL names, overwritten by get_queryset in runtime
+    # for router to determine URL names such as task-list task-details
+    # overwritten by get_queryset in runtime
+    queryset = Task.objects.all()
     serializer_class = TaskSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['status']
